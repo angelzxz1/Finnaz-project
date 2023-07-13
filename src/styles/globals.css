@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.views-lines {
+	@apply h-[1.5rem] w-full border-t-[1px] border-t-[#97979742];
+}
+
+.redirect-link {
+	@apply relative ml-1 font-medium text-[#82778D] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#82778D] after:content-[''] hover:after:w-full;
+}
+
+.form-submit-button {
+	@apply w-full rounded-md bg-[#523869] p-2 text-white hover:bg-[#49315e];
+}
+
+.form-terms-of-service {
+	@apply mt-4 flex w-full flex-auto items-end justify-center text-sm font-semibold text-[#535353];
+}
+
+.form-signin-login-box {
+	@apply mt-4 flex w-full justify-center text-sm font-semibold text-[#535353];
+}
+
+.form-log-reg-h1 {
+	@apply flex w-full justify-center text-4xl text-white xl:text-black;
+}
+
+.form-log-reg-message {
+	@apply mt-4 flex w-full text-[14px] leading-4 text-[#7B7979];
+}
+
+.form-log-reg {
+	@apply flex h-full w-full items-center justify-center xl:w-1/2 xl:bg-[#D9D9D9];
+}
+
+.main-log-reg {
+	@apply flex h-3/4 max-w-[864px] overflow-hidden rounded-2xl bg-[#51515100] md:w-1/2 md:bg-[#51515133];
+}
+
+/* --------------------------------------- toggle show --------------------------------------- */
+
+.display-direct-child:hover > div {
+	@apply flex;
+}
+
+/* --------------------------------------- scrollbar style --------------------------------------- */
+/* Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: #8f54a0;
+}
+html {
+	background-color: #000000;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+	width: 7px;
+}
+
+*::-webkit-scrollbar-track {
+	border-radius: 7px;
+}
+
+*::-webkit-scrollbar-track:hover {
+	background-color: #ffffff22;
+}
+
+*::-webkit-scrollbar-track:active {
+	background-color: #c2c2c222;
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background-color: #8f54a0;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background-color: #774685;
+}
+
+*::-webkit-scrollbar-thumb:active {
+	background-color: #774685;
+}
