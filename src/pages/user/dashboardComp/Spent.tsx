@@ -81,8 +81,6 @@ const SpentItems = ({
 			: LastMonth === Month
 			? 'remains'
 			: 'non-improvement';
-	// console.log(Today);
-	// console.log(formatPurchase(Today));
 	return (
 		<div className="mt-2">
 			<SectionSpentItems

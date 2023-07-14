@@ -87,7 +87,6 @@ const Page = () => {
 						content="A finnacial app for the masses"
 					/>
 					<link rel="icon" href="/favicon.ico" />
-					<div>Seen you're not logged in</div>
 				</Head>
 			</>
 		);
@@ -101,7 +100,6 @@ const Page = () => {
 						content="A finnacial app for the masses"
 					/>
 					<link rel="icon" href="/favicon.ico" />
-					<div>Seen you're not logged in</div>
 				</Head>
 				<MainBody user={User} />
 			</>

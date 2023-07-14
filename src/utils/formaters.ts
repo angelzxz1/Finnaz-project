@@ -60,38 +60,103 @@ export function orderPurchasesByDay(
 	return purchasesOrdered;
 }
 
+// This function will recieve an array of objects with the day, an array of purchases and the date, then will return an object with the lowest and highest amount
+// of the array of purchases, teh lowest amount cannot be 0
+export function getHighestAndLowestAmount(
+	purchases: {
+		day: string;
+		purchases: Purchase[];
+		date: string;
+	}[]
+): { highest: number; lowest: number } {
+	let highest = 0;
+	let lowest = Infinity;
+	purchases.forEach(purchase => {
+		const value = purchase.purchases.reduce((acc, curr) => {
+			return acc + curr.amount;
+		}, 0);
+
+		if (value > highest) {
+			highest = value;
+		}
+		if (value < lowest && value !== 0) {
+			lowest = value;
+		}
+	});
+	return { highest, lowest };
+}
+
+// This funtion will receive 2 numbers, one is the highest amount and the other is the current amount, then will return the percentage of the current amount
+// based on the highest amount
+export function getPercentage(highest: number, current: number): number {
+	return (current / highest) * 100;
+}
+
+// This function will receive an array of objects with the day and the array of purchases, then will return an array with the same object but adding the date
+// The first item of the array will be todays date, then will add the date of the day before, and so on
+// The format of the date will be dd/mm/aaaa
+export function addDateToPurchases(
+	purchases: {
+		day: string;
+		purchases: Purchase[];
+	}[]
+): {
+	day: string;
+	purchases: Purchase[];
+	date: string;
+}[] {
+	const today = new Date();
+	const purchasesWithDate = purchases.map((purchases, index) => {
+		const date = new Date();
+		date.setDate(today.getDate() - index);
+		return {
+			...purchases,
+			date: `${date.getDate()}/${
+				date.getMonth() + 1
+			}/${date.getFullYear()}`,
+		};
+	});
+	return purchasesWithDate;
+}
+
 // This function will receive an array of purchases, then will group the purchases by date, then will return an object
 // with the day and the array with the grouped purchases
-export function groupPurchasesByDate(purchases: Purchase[]) {
-	const group = [];
+export function groupPurchasesByDate(
+	purchases: Purchase[]
+): { day: string; purchases: Purchase[] }[] {
+	const group: {
+		day: string;
+		purchases: Purchase[];
+	}[] = [];
 	group.push({
-		day: 'Monday',
-		purchases: purchases.filter(purchase => purchase.day === 'Monday'),
-	});
-	group.push({
-		day: 'Tuesday',
-		purchases: purchases.filter(purchase => purchase.day === 'Tuesday'),
-	});
-	group.push({
-		day: 'Wednesday',
-		purchases: purchases.filter(purchase => purchase.day === 'Wednesday'),
-	});
-	group.push({
-		day: 'Thursday',
-		purchases: purchases.filter(purchase => purchase.day === 'Thursday'),
-	});
-	group.push({
-		day: 'Friday',
-		purchases: purchases.filter(purchase => purchase.day === 'Friday'),
+		day: 'Sunday',
+		purchases: purchases.filter(purchase => purchase.day === 'Sunday'),
 	});
 	group.push({
 		day: 'Saturday',
 		purchases: purchases.filter(purchase => purchase.day === 'Saturday'),
 	});
 	group.push({
-		day: 'Sunday',
-		lipurchasesst: purchases.filter(purchase => purchase.day === 'Sunday'),
+		day: 'Friday',
+		purchases: purchases.filter(purchase => purchase.day === 'Friday'),
 	});
+	group.push({
+		day: 'Thursday',
+		purchases: purchases.filter(purchase => purchase.day === 'Thursday'),
+	});
+	group.push({
+		day: 'Wednesday',
+		purchases: purchases.filter(purchase => purchase.day === 'Wednesday'),
+	});
+	group.push({
+		day: 'Tuesday',
+		purchases: purchases.filter(purchase => purchase.day === 'Tuesday'),
+	});
+	group.push({
+		day: 'Monday',
+		purchases: purchases.filter(purchase => purchase.day === 'Monday'),
+	});
+
 	return group;
 }
 
