@@ -13,18 +13,6 @@ import { User } from 'Finnaz/types/types';
 import Head from 'next/head';
 
 const MainBody = ({ user }: { user: User }) => {
-	// const user = useSelector((state: RootState) => state.user);
-	// const { purchases } = useSelector((state: RootState) => state.purchases);
-	// useEffect(() => {
-	// 	console.log(purchases);
-	// }, [user, purchases]);
-	// return (
-	// 	<div>
-	// 		{purchases.map(purchase => (
-	// 			<div key={purchase.id}>{purchase.id}</div>
-	// 		))}
-	// 	</div>
-	// );
 	const { monthlyLimit, monthlySpent, purchases, name, id } = user;
 	return (
 		<main className="w-full">

@@ -47,8 +47,11 @@ model User {
     accounts      Account[]
     sessions      Session[]
     transactions  Purchase[]
-    monthlyLimit  Int?
-    monthlySpent  Int?
+    // monthlyLimit  Int       @default(0)
+    // monthlySpent  Int       @default(0)
+    monthlyLimit  Int       @default(0)
+    monthlySpent  Int       @default(0)
+    // monthData     MonthData[]
 }
 
 model VerificationToken {
@@ -70,4 +73,28 @@ model Purchase {
     day         String //This is the name of the day, not the date
     month       String
     year        String
+    // monthData   MonthData @relation(fields: [monthDataId], references: [id])
+    // monthDataId String
 }
+
+// model MonthData{
+//     id         String   @id @unique @default(cuid())
+//     user       User     @relation(fields: [userId], references: [id])
+//     userId     String
+//     month      String
+//     year       String
+//     monthLimit Int
+//     monthSpent Int
+//     purchases  Purchase[]
+
+// }
+
+// model YearData {
+//     id         String   @id @unique @default(cuid())
+//     user       User     @relation(fields: [userId], references: [id])
+//     userId     String
+//     year       String
+//     yearLimit  Int
+//     yearSpent  Int
+//     monthsData MonthData[]
+// }

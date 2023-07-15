@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
+import { RootState } from 'Finnaz/utils/store';
+import { formatDate, getMonthName } from 'Finnaz/utils/formaters';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const getData = (current, total) => {
+const getData = (
+	current: number,
+	total: number
+): {
+	datasets: {
+		data: number[];
+		backgroundColor: string[];
+		borderWidth: number;
+	}[];
+} => {
 	console.log(current / total > 1 ? current - total : total - current);
 	const data = {
 		datasets: [
@@ -29,10 +41,31 @@ const getData = (current, total) => {
 			},
 		],
 	};
+	typeof data;
 	return data;
 };
 
 const Doughnuts = () => {
+	const { purchases } = useSelector((state: RootState) => state.purchases);
+	const todayMonth: number = new Date().getMonth();
+	const todayYear: number = new Date().getFullYear();
+	const [thisMonth, lastMonth, twoMonthsAgo] = [
+		purchases.filter(
+			item =>
+				item.month === getMonthName(todayMonth) &&
+				item.year === todayYear.toString()
+		),
+		purchases.filter(
+			item =>
+				item.month === getMonthName(todayMonth - 1) &&
+				item.year === todayYear.toString()
+		),
+		purchases.filter(
+			item =>
+				item.month === getMonthName(todayMonth - 2) &&
+				item.year === todayYear.toString()
+		),
+	];
 	const [dataD, setDataD] = useState<
 		{ current: number; total: number; month: string }[]
 	>([]);

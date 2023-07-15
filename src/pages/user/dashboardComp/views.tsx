@@ -88,20 +88,13 @@ const Views = () => {
 	console.log(highest, lowest);
 	// const [highest, setHighest] = useState<number>(0);
 	// const [lowest, setLowest] = useState<number>(0);
-	useEffect(() => {
-		const data = [];
-		for (let i = 0; i < 7; i++) {
-			data.push(randomIntFromInterval(0, 100) * 1000);
-		}
-		// setHighest(roundUpNumber(getHighest(data)));
-		// setLowest(getLowest(data));
-	}, [purchases]);
+
 	return (
-		<section className="flex h-full w-full flex-wrap">
+		<section className="flex h-full w-full flex-wrap ">
 			<div className="w-full">
 				<h1 className="w-full py-4 text-4xl font-semibold">Views</h1>
 			</div>
-			<div className="border-l-gray-401 border-b-gray-401 relative h-[18rem] w-4/5 border-b-[1px] border-l-[1px]">
+			<div className="border-l-gray-401 border-b-gray-401 relative h-[18rem] w-full border-b-[1px] border-l-[1px] ">
 				<div className="absolute z-10 flex h-full w-full items-end justify-evenly">
 					{last7withDate.map((dayinfo, index) => {
 						return (

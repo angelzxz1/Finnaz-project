@@ -1,17 +1,22 @@
 import React from 'react';
-import formatter from '../../util/formatter';
+import { formatter } from 'Finnaz/utils//formaters';
+import type { purchasesType } from 'Finnaz/types/types';
 
-const StatusTag = ({ state }): JSX.Element => {
-	const statusColor = {
-		paid: 'bg-whitegreen text-paidgreenfg',
-		declined: 'bg-declinedredbg text-declinedredfg',
-		pending: 'bg-pendingyellowbg text-pendingyellowfg',
-	};
+type StatusTagType = {
+	state: string;
+};
+const StatusTag = ({ state }: StatusTagType): JSX.Element => {
+	const statusColor =
+		state === 'paid'
+			? 'bg-whitegreen text-paidgreenfg'
+			: state === 'declined'
+			? 'bg-declinedredbg text-declinedredfg'
+			: 'bg-pendingyellowbg text-pendingyellowfg';
 
 	return (
 		<>
 			<div
-				className={`leading-sm ml-2 flex justify-center px-2 py-1 text-xs font-bold ${statusColor[state]} w-1/4 rounded-md`}
+				className={`leading-sm ml-2 flex justify-center px-2 py-1 text-xs font-bold ${statusColor} w-1/4 rounded-md`}
 			>
 				{state.charAt(0).toUpperCase() + state.slice(1)}
 			</div>
@@ -19,7 +24,11 @@ const StatusTag = ({ state }): JSX.Element => {
 	);
 };
 
-const PurchaseItem = ({ purchases }): JSX.Element => {
+const PurchaseItem = ({
+	purchases,
+}: {
+	purchases: purchasesType;
+}): JSX.Element => {
 	return (
 		<div className="flex flex-col gap-2">
 			{purchases.map(p => {
@@ -47,7 +56,7 @@ const PurchaseItem = ({ purchases }): JSX.Element => {
 	);
 };
 
-function Purchases({ purchase }) {
+function Purchases({ purchase }: { purchase: purchasesType }) {
 	return (
 		<>
 			<div className="flex w-4/5 flex-col">

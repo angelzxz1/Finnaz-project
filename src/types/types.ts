@@ -1,3 +1,5 @@
+import { purchases } from 'Finnaz/pages/user/dashboard';
+type purchasesType = typeof purchases;
 import { type Purchase } from '@prisma/client';
 
 export interface UsersState {
@@ -27,3 +29,4 @@ export type User = {
 	alreadyLoggedIn: boolean | undefined;
 	purchases: Purchase[];
 };
+export type { purchasesType };
