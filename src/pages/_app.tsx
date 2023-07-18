@@ -17,7 +17,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
 			<Provider store={store}>
 				<StoreLoader>
 					<NavBar />
-					<div className="flex w-full justify-center pt-[37px]">
+					<div className="flex h-screen w-full justify-center pt-[37px]">
 						<div className="w-full ">
 							<Component {...pageProps} className />
 						</div>

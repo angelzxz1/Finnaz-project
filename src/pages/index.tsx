@@ -11,8 +11,8 @@ export default function Home() {
 				/>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main className="flex h-full flex-col items-center justify-center gap-4 text-black">
-				Test
+			<main className="flex h-full flex-col items-center justify-center gap-4 text-white">
+				<h1 className="text-[4rem]">Welcome to Finnaz</h1>
 			</main>
 		</>
 	);

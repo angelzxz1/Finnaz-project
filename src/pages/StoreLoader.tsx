@@ -11,6 +11,7 @@ import { useSession } from 'next-auth/react';
 import { useEffect, type ReactNode, use } from 'react';
 import { api } from 'Finnaz/utils/api';
 import { useSelector, useDispatch } from 'react-redux';
+import { getMonthName } from 'Finnaz/utils/formaters';
 
 const PurchasesLoader = ({
 	userId,
@@ -24,8 +25,6 @@ const PurchasesLoader = ({
 		api.purchase.getPurchaseByUser.useQuery({
 			userId: userId,
 		});
-	console.log(purchaseData);
-	console.log(isSuccess);
 	if (isSuccess && purchaseData) {
 		dispatch(setPurchases(purchaseData));
 	}
@@ -55,6 +54,13 @@ const StoreLoader = ({ children }: { children: ReactNode }) => {
 	const user = useSelector((state: RootState) => state.user);
 	const dispatch = useDispatch();
 	const { data: sessionData, status } = useSession();
+	const { data: userData } = api.users.getUser.useQuery({
+		id: user.id,
+	});
+	const { data: purchaseData } = api.purchase.getPurchaseByUser.useQuery({
+		userId: user.id,
+	});
+	console.log(purchaseData, userData);
 
 	if (user.alreadyLoggedIn) {
 		return (

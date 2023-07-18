@@ -53,6 +53,7 @@ export const purchaseRouter = createTRPCRouter({
 				amount: z.number(),
 				subcripcion: z.boolean(),
 				descripcion: z.string(),
+				monthDataId: z.string(),
 			})
 		)
 		.mutation(({ ctx, input }) => {
@@ -66,6 +67,7 @@ export const purchaseRouter = createTRPCRouter({
 					day: input.day,
 					subcripcion: input.subcripcion,
 					descripcion: input.descripcion,
+					monthDataId: input.monthDataId,
 				},
 			});
 		}),

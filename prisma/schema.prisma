@@ -47,11 +47,12 @@ model User {
     accounts      Account[]
     sessions      Session[]
     transactions  Purchase[]
-    // monthlyLimit  Int       @default(0)
-    // monthlySpent  Int       @default(0)
-    monthlyLimit  Int       @default(0)
-    monthlySpent  Int       @default(0)
-    // monthData     MonthData[]
+    monthlyLimit  Int?       @default(0)
+    monthlySpent  Int?       @default(0)
+    monthData     MonthData[]
+    yearData      YearData[]
+    currentMonth  String?   @default("")
+    currentYear   String?   @default("")
 }
 
 model VerificationToken {
@@ -70,31 +71,33 @@ model Purchase {
     date        String
     descripcion String?
     subcripcion Boolean
-    day         String //This is the name of the day, not the date
-    month       String
+    day         String // This is the name of the day, not the date
+    month       String // This is the name of the month
     year        String
-    // monthData   MonthData @relation(fields: [monthDataId], references: [id])
-    // monthDataId String
+    monthData   MonthData @relation(fields: [monthDataId], references: [id])
+    monthDataId String
 }
 
-// model MonthData{
-//     id         String   @id @unique @default(cuid())
-//     user       User     @relation(fields: [userId], references: [id])
-//     userId     String
-//     month      String
-//     year       String
-//     monthLimit Int
-//     monthSpent Int
-//     purchases  Purchase[]
+model MonthData{
+    id         String   @id @unique @default(cuid())
+    user       User     @relation(fields: [userId], references: [id])
+    userId     String
+    month      String
+    year       String
+    yearData   YearData @relation(fields: [yearDataId], references: [id])
+    yearDataId String
+    monthLimit Int
+    monthSpent Int
+    purchases  Purchase[]
 
-// }
+}
 
-// model YearData {
-//     id         String   @id @unique @default(cuid())
-//     user       User     @relation(fields: [userId], references: [id])
-//     userId     String
-//     year       String
-//     yearLimit  Int
-//     yearSpent  Int
-//     monthsData MonthData[]
-// }
+model YearData {
+    id         String   @id @unique @default(cuid())
+    user       User     @relation(fields: [userId], references: [id])
+    userId     String
+    year       String
+    yearLimit  Int
+    yearSpent  Int
+    monthsData MonthData[]
+}

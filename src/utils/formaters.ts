@@ -31,6 +31,7 @@ export function addEmptyPurchases(purchases: Purchase[]): Purchase[] {
 			day: '',
 			month: '',
 			year: '',
+			monthDataId: '',
 		};
 		const emptyPurchases = new Array(7 - purchases.length).fill(
 			emptyPurchase
